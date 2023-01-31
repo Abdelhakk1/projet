@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author Abdou
- *
- */
-module project {
-}
