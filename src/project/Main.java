@@ -2,8 +2,7 @@ package project;
 
 
 import java.util.List;
-
-
+import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,21 +15,59 @@ import org.apache.poi.ss.usermodel.Cell;
 
 
 
+
 public class Main {
+
+	// Display products list
+	public void display() throws IOException {
+		FileInputStream inpsr = new FileInputStream("stock.xls");
+		Workbook workbook = new HSSFWorkbook(inpsr);
+		Sheet sheet = workbook.getSheetAt(0);
+		for (Row row : sheet) {
+			for (Cell cell : row) {
+				System.out.print(cell + "\t");
+			}
+			System.out.println();
+		}
+		workbook.close();
+		inpsr.close();
+		}
+
+	// Search according to product/categorie/keywords
+	public void search(String type, String value) {
+		
+	}
+	
+	// Delete a product
+	public void deleteProduct(String product) {
+		
+	}
+	
+	// Modify quantity of a product
+	public void modifyQt(Product product, int newQt) {
+		
+	}
+	// Modify a categorie product
+	public void modify (Product product, String infoType, String infoModified) {
+		
+	}
+	
+	
     public static void main(String[] args) throws IOException {
-    	// Attacher un fichier excel
     	
-    	 FileInputStream inpsr = new FileInputStream("stock.xls");
-         Workbook workbook = new HSSFWorkbook(inpsr);
-         Sheet sheet = workbook.getSheetAt(0);
-         for (Row row : sheet) {
-             for (Cell cell : row) {
-                 System.out.print(cell + "\t");
-             }
-             System.out.println();
-         }
-         inpsr.close();
+        
+        
+        System.out.println("Tap 'a' to display the list of products");
+    	System.out.println("Tap 's' to search products");
+    	System.out.println("Tap 'm' to modify the stock");
     	
+    	Scanner comScanner = new Scanner(System.in);
+    	String command = comScanner.nextLine();
+    	
+    	if (command=="a") {
+    		
+    		
+    	}
     	
         // Créer une nouvelle liste de produits
         ProductList productList = new ProductList();
@@ -58,7 +95,9 @@ public class Main {
         boolean isAuthenticated = authentication.checkCredentials("ammi", "bachir");
         if (isAuthenticated) {
             System.out.println("Authentification réussie");
-
+            
+            // Notification
+            
             // Afficher la liste de produits
             for (Product product : productList.getProducts()) {
                 System.out.println(product.getName() + " (" + product.getQuantity() + " en stock)");
