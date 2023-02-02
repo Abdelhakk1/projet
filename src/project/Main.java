@@ -17,7 +17,30 @@ import org.apache.poi.ss.usermodel.Cell;
 
 
 public class Main {
-
+	
+	// Add a product
+	public void addProduct() {
+		Scanner scanner = new Scanner(System.in);
+    	System.out.println("add the product code");
+    	String code = scanner.nextLine();
+    	System.out.println("Add the product name");
+    	String name = scanner.nextLine();
+    	System.out.println("Add the product discription");
+    	String description = scanner.nextLine();
+    	int quantity = scanner.nextInt();
+    	int notificationThreshold = scanner.nextInt();
+    	double price = scanner.nextDouble();
+    	System.out.println("Type the dimensions of the product");
+    	double length = scanner.nextDouble();
+    	double width = scanner.nextDouble();
+    	double height = scanner.nextDouble();
+    	Dimensions dimensions = new Dimensions(length, width, height);
+    	// categories
+        Category paintCategory = new Category("PAINT", "Peinture");
+        
+        // Add the product
+    	Product product = new Product(code, name, description, quantity, notificationThreshold, price, dimensions, paintCategory);
+	}
 	// Display products list
 	public void display() throws IOException {
 		FileInputStream inpsr = new FileInputStream("stock.xls");
