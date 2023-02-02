@@ -4,8 +4,34 @@ package project;
 import java.util.List;
 
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Cell;
+
+
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+    	// Attacher un fichier excel
+    	
+    	 FileInputStream inpsr = new FileInputStream("stock.xls");
+         Workbook workbook = new HSSFWorkbook(inpsr);
+         Sheet sheet = workbook.getSheetAt(0);
+         for (Row row : sheet) {
+             for (Cell cell : row) {
+                 System.out.print(cell + "\t");
+             }
+             System.out.println();
+         }
+         inpsr.close();
+    	
+    	
         // Créer une nouvelle liste de produits
         ProductList productList = new ProductList();
 
