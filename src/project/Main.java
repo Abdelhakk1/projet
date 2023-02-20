@@ -4,39 +4,84 @@ import java.util.List;
 import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.apache.poi.hssf.model.InternalWorkbook;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Cell;
 
 public class Main {
 
 	// Add a product
-	public static void addProduct() {
+	public static void addProduct() throws IOException {
+
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("add the product code");
+		System.out.println("Add the product code");
 		String code = scanner.nextLine();
 		System.out.println("Add the product name");
 		String name = scanner.nextLine();
-		System.out.println("Add the product discription");
+		System.out.println("Add the product description");
 		String description = scanner.nextLine();
+		System.out.println("Add the product quantity");
 		int quantity = scanner.nextInt();
+		System.out.println("Add the notification threshold");
 		int notificationThreshold = scanner.nextInt();
+		System.out.println("Add the product price");
 		double price = scanner.nextDouble();
-		System.out.println("Type the dimensions of the product");
-		double length = scanner.nextDouble();
-		double width = scanner.nextDouble();
-		double height = scanner.nextDouble();
-		Dimensions dimensions = new Dimensions(length, width, height);
+
 		// categories
 		Category paintCategory = new Category("PAINT", "Peinture");
 
-		// Add the product
-		Product product = new Product(code, name, description, quantity, notificationThreshold, price, dimensions,
-				paintCategory);
+		// Create a product object
+		Product product = new Product(code, name, description, quantity, notificationThreshold, price, paintCategory);
+
+		// Load the existing workbook
+		FileInputStream inputStream = new FileInputStream("stock.xls");
+		Workbook workbook = WorkbookFactory.create(inputStream);
+
+		// Get the Products sheet
+		Sheet sheet = workbook.getSheet("Products");
+
+		// Get the last row number and add 1 to get the new row number
+		int newRowNum = sheet.getLastRowNum() + 1;
+
+		// Create a new row
+		Row row = sheet.createRow(newRowNum);
+
+		// Create the cells for the new row and set their values
+		Cell cellCode = row.createCell(0);
+		cellCode.setCellValue(product.getCode());
+
+		Cell cellName = row.createCell(1);
+		cellName.setCellValue(product.getName());
+
+		Cell cellDescription = row.createCell(2);
+		cellDescription.setCellValue(product.getDescription());
+
+		Cell cellQuantity = row.createCell(3);
+		cellQuantity.setCellValue(product.getQuantity());
+
+		Cell cellNotificationThreshold = row.createCell(4);
+		cellNotificationThreshold.setCellValue(product.getNotificationThreshold());
+
+		Cell cellPrice = row.createCell(5);
+		cellPrice.setCellValue(product.getPrice());
+
+		Cell cellCategory = row.createCell(6);
+		cellCategory.setCellValue(product.getCategory().getName());
+
+		// Save the changes to the workbook
+		FileOutputStream outputStream = new FileOutputStream("stock.xls");
+		workbook.write(outputStream);
+		workbook.close();
+
+		System.out.println("Product added to Excel file.");
+
 	}
 
 	// Display products list
@@ -94,13 +139,13 @@ public class Main {
 				addProduct();
 				break;
 			case "delete":
-				//deleteProduct();
+				// deleteProduct();
 				break;
 			case "modify":
-				//modifyQuantity();
+				// modifyQuantity();
 				break;
 			case "search":
-				//searchProduct();
+				// searchProduct();
 				break;
 			case "display":
 				display();
@@ -113,24 +158,18 @@ public class Main {
 			}
 		} while (!command.equals("exit"));
 
-		// Créer une nouvelle liste de produits
+		// Creer une nouvelle liste de produits
 		ProductList productList = new ProductList();
 
-		// Créer une catégorie de peinture
+		// Creer une catégorie de peinture
 		Category paintCategory = new Category("PAINT", "Peinture");
 
 		// Créer quelques produits de peinture
 		Product redPaint = new Product("RP-1", "Peinture rouge", "Peinture rouge de haute qualité", 100, 50, 10.99,
-				new Dimensions(10, 20, 30), paintCategory);
-		Product bluePaint = new Product("BP-2", "Peinture bleue", "Peinture bleue de haute qualité", 80, 40, 12.99,
-				new Dimensions(20, 40, 60), paintCategory);
-		Product greenPaint = new Product("GP-3", "Peinture verte", "Peinture verte de haute qualité", 60, 30, 14.99,
-				new Dimensions(30, 60, 90), paintCategory);
+				 paintCategory);
 
 		// Ajouter les produits à la liste
 		productList.addProduct(redPaint);
-		productList.addProduct(bluePaint);
-		productList.addProduct(greenPaint);
 
 		// Créer un objet d'authentification
 		Authentication authentication = new Authentication();
@@ -176,9 +215,7 @@ public class Main {
 			}
 
 			// Modifier la quantité en stock d'un produit
-			bluePaint.addQuantity(20);
-			System.out.println("Nouvelle quantité en stock pour le produit '" + bluePaint.getName() + "': "
-					+ bluePaint.getQuantity());
+
 		}
 	}
 }

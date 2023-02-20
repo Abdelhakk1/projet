@@ -10,10 +10,9 @@ public class Product {
     private int quantity;
     private int notificationThreshold;
     private double price;
-    private Dimensions dimensions;
     private Category category;
 
-    public Product(String code, String name, String description, int quantity, int notificationThreshold, double price, Dimensions dimensions, Category category) {
+    public Product(String code, String name, String description, int quantity, int notificationThreshold, double price, Category category) {
         this.id = UUID.randomUUID();
         this.code = code;
         this.name = name;
@@ -21,7 +20,6 @@ public class Product {
         this.quantity = quantity;
         this.notificationThreshold = notificationThreshold;
         this.price = price;
-        this.dimensions = dimensions;
         this.category = category;
     }
 
@@ -53,10 +51,6 @@ public class Product {
         return price;
     }
 
-    public Dimensions getDimensions() {
-        return dimensions;
-    }
-
     public Category getCategory() {
         return category;
     }
@@ -83,10 +77,6 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public void setDimensions(Dimensions dimensions) {
-        this.dimensions = dimensions;
     }
 
     public void setCategory(Category category) {
