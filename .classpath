@@ -20,6 +20,6 @@
 	<classpathentry kind="lib" path="lib/poi-bin-5.2.3/poi-ooxml-lite-5.2.3.jar"/>
 	<classpathentry kind="lib" path="lib/poi-bin-5.2.3/poi-scratchpad-5.2.3.jar"/>
 	<classpathentry kind="lib" path="lib/poi-bin-5.2.3/lib/SparseBitSet-1.2.jar"/>
-	<classpathentry kind="lib" path="D:/HIS/S3/POO/TP/projet/projet/lib/log4j-core-2.17.2.0001L.jar"/>
+	<classpathentry kind="lib" path="D:/HIS/S3/POO/TP/projet/projet/lib/apache-log4j-2.19.0-bin/apache-log4j-2.19.0-bin/log4j-core-2.19.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

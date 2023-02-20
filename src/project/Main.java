@@ -45,7 +45,7 @@ public class Main {
 		Workbook workbook = WorkbookFactory.create(inputStream);
 
 		// Get the Products sheet
-		Sheet sheet = workbook.getSheet("Products");
+		Sheet sheet = workbook.getSheet("sheet");
 
 		// Get the last row number and add 1 to get the new row number
 		int newRowNum = sheet.getLastRowNum() + 1;
@@ -86,10 +86,12 @@ public class Main {
 
 	// Display products list
 	public static void display() throws IOException {
+		System.out.println("Entred display fonction");
 		FileInputStream inpsr = new FileInputStream("stock.xls");
 		Workbook workbook = new HSSFWorkbook(inpsr);
 		Sheet sheet = workbook.getSheetAt(0);
 		for (Row row : sheet) {
+			System.out.println(row.toString());
 			for (Cell cell : row) {
 				System.out.print(cell + "\t");
 			}
@@ -100,8 +102,44 @@ public class Main {
 	}
 
 	// Search according to product/categorie/keywords
-	public void search(String type, String value) {
-
+	public static void search(int type, String value) throws IOException {
+		System.out.println("Entred seacrch fonction");
+		FileInputStream inpsr = new FileInputStream("stock.xls");
+		Workbook workbook = new HSSFWorkbook(inpsr);
+		Sheet sheet = workbook.getSheetAt(0);
+		if (type==1) {
+	            for (Row row : sheet) {
+	                Cell cell = row.getCell(1);
+	                if (cell != null && cell.getStringCellValue().equals(value)) {
+	                	for (Cell cell2 : row) {
+	        				System.out.print(cell + "\t");
+	        			}
+	        			System.out.println();
+	                }
+	            }
+	        } else if (type==2){
+	        	for (Row row : sheet) {
+	                Cell cell = row.getCell(1);
+	                if (cell != null && cell.getStringCellValue().equals(value)) {
+	                	for (Cell cell2 : row) {
+	        				System.out.print(cell + "\t");
+	        			}
+	        			System.out.println();
+	                }
+	            }
+	        } else if (type==3) {
+	        	for (Row row : sheet) {
+	                Cell cell = row.getCell(1);
+	                if (cell != null && cell.getStringCellValue().equals(value)) {
+	                	for (Cell cell2 : row) {
+	        				System.out.print(cell + "\t");
+	        			}
+	        			System.out.println();
+	                }
+	            }
+	        }
+		workbook.close();
+		inpsr.close();
 	}
 
 	// Delete a product
@@ -145,7 +183,11 @@ public class Main {
 				// modifyQuantity();
 				break;
 			case "search":
-				// searchProduct();
+				System.out.println("Search according to 1: product name \n 2: categorie \n 3: key-word");
+				int stype = scanner.nextInt();
+				System.out.println("Enter the value you want to search");
+				String svalue = scanner.nextLine();
+				search(stype, svalue);
 				break;
 			case "display":
 				display();
@@ -166,7 +208,7 @@ public class Main {
 
 		// Créer quelques produits de peinture
 		Product redPaint = new Product("RP-1", "Peinture rouge", "Peinture rouge de haute qualité", 100, 50, 10.99,
-				 paintCategory);
+				paintCategory);
 
 		// Ajouter les produits à la liste
 		productList.addProduct(redPaint);
