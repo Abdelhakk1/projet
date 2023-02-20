@@ -42,7 +42,7 @@ public class Main {
     	Product product = new Product(code, name, description, quantity, notificationThreshold, price, dimensions, paintCategory);
 	}
 	// Display products list
-	public void display() throws IOException {
+	public static void display() throws IOException {
 		FileInputStream inpsr = new FileInputStream("stock.xls");
 		Workbook workbook = new HSSFWorkbook(inpsr);
 		Sheet sheet = workbook.getSheetAt(0);
@@ -79,7 +79,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
     	
         
-        
+        System.out.println("type 'add' to add a product");
         System.out.println("Tap 'a' to display the list of products");
     	System.out.println("Tap 's' to search products");
     	System.out.println("Tap 'm' to modify the stock");
@@ -88,7 +88,7 @@ public class Main {
     	String command = comScanner.nextLine();
     	
     	if (command=="a") {
-    		
+    		display();
     		
     	}
     	
