@@ -4,9 +4,15 @@
  */
 package Systeme;
 
+import java.awt.Color;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @version 2.4
@@ -16,9 +22,9 @@ public class Auteur extends javax.swing.JFrame {
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
-    
+
     /**
-     *  cette classe pour initiliser les composants
+     * cette classe pour initiliser les composants
      */
     public Auteur() {
         initComponents();
@@ -36,12 +42,12 @@ public class Auteur extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jProduitsHorsSButton = new javax.swing.JToggleButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -75,12 +81,7 @@ public class Auteur extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel2.setBackground(new java.awt.Color(74, 31, 61));
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Stock");
-        jLabel9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -93,6 +94,24 @@ public class Auteur extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Notifications");
         jLabel11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel11.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jLabel11FocusGained(evt);
+            }
+        });
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel11MouseEntered(evt);
+            }
+        });
+        jLabel11.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jLabel11KeyPressed(evt);
+            }
+        });
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Systeme/icons8_Paint_Bucket_80px_1.png"))); // NOI18N
 
@@ -105,6 +124,16 @@ public class Auteur extends javax.swing.JFrame {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("MR.Bachir");
 
+        jProduitsHorsSButton.setBackground(new java.awt.Color(255, 0, 51));
+        jProduitsHorsSButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jProduitsHorsSButton.setForeground(new java.awt.Color(255, 255, 255));
+        jProduitsHorsSButton.setText("Produits Hors Stock");
+        jProduitsHorsSButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jProduitsHorsSButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -112,12 +141,6 @@ public class Auteur extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,20 +151,26 @@ public class Auteur extends javax.swing.JFrame {
                                     .addGap(54, 54, 54))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(22, 22, 22)))))))
+                                    .addGap(22, 22, 22)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jProduitsHorsSButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(113, 113, 113)
+                .addComponent(jProduitsHorsSButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -343,56 +372,57 @@ public class Auteur extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtdes, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGap(8, 8, 8)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtcode, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtnom, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton3)
-                                    .addGap(0, 0, 0)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(txtqua, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(txtquamin, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(txtcatc, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(txtcatn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(2, 2, 2)))
-                                            .addGap(76, 76, 76)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(0, 66, Short.MAX_VALUE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))))
+                                .addGap(8, 8, 8)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtcode, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtnom, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton3)
+                                .addGap(0, 0, 0)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(txtqua, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(txtquamin, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(txtcatc, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(txtcatn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(2, 2, 2)))
+                                                .addGap(76, 76, 76)
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtdes, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 62, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jButton1)
@@ -526,96 +556,100 @@ public class Auteur extends javax.swing.JFrame {
     private void txtquaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtquaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtquaActionPerformed
-/**
- * cette fonction actualise le tableau, apres une operation
- * @param evt 
- */
+    /**
+     * cette fonction actualise le tableau, apres une operation
+     *
+     * @param evt
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        try{
-           Class.forName("org.sqlite.JDBC");
-           con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
-           String sql = "Update auteur set nom=?,description=?,quantite=?,quantitemin=?,categorienom=?,categoriecode=? where code=?";
-           pst=con.prepareStatement(sql);
-             pst.setString(7, txtcode.getText());
-             pst.setString(1, txtnom.getText());
-             pst.setString(2, txtdes.getText());
-             pst.setString(3, txtqua.getText());
-             pst.setString(4, txtquamin.getText());
-             pst.setString(5, txtcatn.getText());
-             pst.setString(6, txtcatc.getText());
-             pst.executeUpdate();
-             con.close();
-             JOptionPane.showMessageDialog(null, "Modification reussite");
-             TableAuteur();
-        }catch(Exception e){
+        try {
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
+            String sql = "Update auteur set nom=?,description=?,quantite=?,quantitemin=?,categorienom=?,categoriecode=? where code=?";
+            pst = con.prepareStatement(sql);
+            pst.setString(7, txtcode.getText());
+            pst.setString(1, txtnom.getText());
+            pst.setString(2, txtdes.getText());
+            pst.setString(3, txtqua.getText());
+            pst.setString(4, txtquamin.getText());
+            pst.setString(5, txtcatn.getText());
+            pst.setString(6, txtcatc.getText());
+            pst.executeUpdate();
+            con.close();
+            JOptionPane.showMessageDialog(null, "Modification reussite");
+            TableAuteur();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
-/**
- * cette fonction ajoute des produits
- * @param evt 
- */
+    /**
+     * cette fonction ajoute des produits
+     *
+     * @param evt
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
-        try{
-           Class.forName("org.sqlite.JDBC");
-           con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
-           String sql = "insert into auteur (code,nom,description,quantite,quantitemin,categorienom,categoriecode)values(?,?,?,?,?,?,?)";
-           pst=con.prepareStatement(sql);
-             pst.setString(1, txtcode.getText());
-             pst.setString(2, txtnom.getText());
-             pst.setString(3, txtdes.getText());
-             pst.setString(4, txtqua.getText());
-             pst.setString(5, txtquamin.getText());
-             pst.setString(6, txtcatn.getText());
-             pst.setString(7, txtcatc.getText());
-             pst.executeUpdate();
-             con.close();
-             JOptionPane.showMessageDialog(null, "Enregistrement reussie");
-             TableAuteur();
-        }catch(Exception e){
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
+            String sql = "insert into auteur (code,nom,description,quantite,quantitemin,categorienom,categoriecode)values(?,?,?,?,?,?,?)";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, txtcode.getText());
+            pst.setString(2, txtnom.getText());
+            pst.setString(3, txtdes.getText());
+            pst.setString(4, txtqua.getText());
+            pst.setString(5, txtquamin.getText());
+            pst.setString(6, txtcatn.getText());
+            pst.setString(7, txtcatc.getText());
+            pst.executeUpdate();
+            con.close();
+            JOptionPane.showMessageDialog(null, "Enregistrement reussie");
+            TableAuteur();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
-/**
- * cette fonction supprime les elements
- * @param evt 
- */
+    /**
+     * cette fonction supprime les elements
+     *
+     * @param evt
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try{
-           Class.forName("org.sqlite.JDBC");
-           con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
-           String sql = "delete from auteur where code=?";
-           pst=con.prepareStatement(sql);
-             pst.setString(1, txtcode.getText());
-             pst.executeUpdate();
-             con.close();
-             JOptionPane.showMessageDialog(null, "suppression reussite");
-             TableAuteur();
-        }catch(Exception e){
+        try {
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
+            String sql = "delete from auteur where code=?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, txtcode.getText());
+            pst.executeUpdate();
+            con.close();
+            JOptionPane.showMessageDialog(null, "suppression reussite");
+            TableAuteur();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-/**
- * cette fonction pour extraire les information dun produits
- * @param evt 
- */
+    /**
+     * cette fonction pour extraire les information dun produits
+     *
+     * @param evt
+     */
     private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
         // TODO add your handling code here:
-        int i=jTable1.getSelectedRow();
-        DefaultTableModel model=(DefaultTableModel)jTable1.getModel();
+        int i = jTable1.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         txtcode.setText(model.getValueAt(i, 0).toString());
         txtnom.setText(model.getValueAt(i, 1).toString());
         txtdes.setText(model.getValueAt(i, 2).toString());
         txtqua.setText(model.getValueAt(i, 3).toString());
-        txtquamin.setText(model.getValueAt(i,4).toString());        
+        txtquamin.setText(model.getValueAt(i, 4).toString());
         txtcatn.setText(model.getValueAt(i, 5).toString());
         txtcatn.setText(model.getValueAt(i, 6).toString());
-        
+
     }//GEN-LAST:event_jTable1MouseReleased
 
     private void txtrechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrechActionPerformed
@@ -666,151 +700,228 @@ public class Auteur extends javax.swing.JFrame {
     private void txtquaminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtquaminActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtquaminActionPerformed
-public void TableAuteur(){
-    String []auteur={"CODE  ","NOM","DESCRIPTION","QUANTITE","QUANTITE_MIN","NOM_CATEGORIE","CODE_CATEGORIE"};
-    String []afficher=new String[8];
-    DefaultTableModel model = new DefaultTableModel(null,auteur);
-    String sql = "select * from auteur";
-    try{
-        Class.forName("org.sqlite.JDBC");
-           con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
-           Statement st = con.createStatement();
-             rs=st.executeQuery(sql);
-             
-             while (rs.next()){
-                 afficher[0] = rs.getString("code");
-                 afficher[1] = rs.getString("nom");
-                 afficher[2] = rs.getString("description");
-                 afficher[3] = rs.getString("quantite");
-                 afficher[4] = rs.getString("quantitemin");
-                 afficher[5] = rs.getString("categorienom");
-                 afficher[6] = rs.getString("categoriecode");
-                 model.addRow(afficher);
-             }
-             jTable1.setModel(model);
-             con.close();
-    }catch(Exception e){
-        e.printStackTrace();
+
+    private void jLabel11KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel11KeyPressed
+        jLabel11.setBackground(Color.blue);
+        String[] auteur = {"CODE  ", "NOM", "DESCRIPTION", "QUANTITE", "QUANTITE_MIN", "NOM_CATEGORIE", "CODE_CATEGORIE"};
+        String[] afficher = new String[8];
+        DefaultTableModel model = new DefaultTableModel(null, auteur);
+        String sql = "select * from auteur";
+        try {
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
+            Statement st = con.createStatement();
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                afficher[0] = rs.getString("code");
+                afficher[1] = rs.getString("nom");
+                afficher[2] = rs.getString("description");
+                afficher[3] = rs.getString("quantite");
+                afficher[4] = rs.getString("quantitemin");
+                afficher[5] = rs.getString("categorienom");
+                afficher[6] = rs.getString("categoriecode");
+
+                int quantite = Integer.parseInt(afficher[3]);
+                int quantiteMin = Integer.parseInt(afficher[4]);
+                if (quantite < quantiteMin) {
+                model.addRow(afficher);}
+            }
+            jTable1.setForeground(Color.red);
+            jTable1.setModel(model);
+
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }//GEN-LAST:event_jLabel11KeyPressed
+
+    private void jLabel11FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jLabel11FocusGained
+        jLabel11.setBackground(Color.blue);
+    }//GEN-LAST:event_jLabel11FocusGained
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+jLabel11.setBackground(Color.blue);        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jLabel11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseEntered
+jLabel11.setBackground(Color.orange);        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel11MouseEntered
+
+    private void jProduitsHorsSButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jProduitsHorsSButtonActionPerformed
+        
+        if (jProduitsHorsSButton.isSelected()){
+            String[] auteur = {"CODE  ", "NOM", "DESCRIPTION", "QUANTITE", "QUANTITE_MIN", "NOM_CATEGORIE", "CODE_CATEGORIE"};
+        String[] afficher = new String[8];
+        DefaultTableModel model = new DefaultTableModel(null, auteur);
+        String sql = "select * from auteur";
+        try {
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
+            Statement st = con.createStatement();
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                afficher[0] = rs.getString("code");
+                afficher[1] = rs.getString("nom");
+                afficher[2] = rs.getString("description");
+                afficher[3] = rs.getString("quantite");
+                afficher[4] = rs.getString("quantitemin");
+                afficher[5] = rs.getString("categorienom");
+                afficher[6] = rs.getString("categoriecode");
+
+                int quantite = Integer.parseInt(afficher[3]);
+                int quantiteMin = Integer.parseInt(afficher[4]);
+                if (quantite < quantiteMin) {
+                model.addRow(afficher);}
+            }
+            jTable1.setForeground(Color.red);
+            jTable1.setModel(model);
+
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        } else {
+            jTable1.setForeground(Color.black);
+            TableAuteur();
+        }
+    }//GEN-LAST:event_jProduitsHorsSButtonActionPerformed
+    public void TableAuteur() {
+        String[] auteur = {"CODE  ", "NOM", "DESCRIPTION", "QUANTITE", "QUANTITE_MIN", "NOM_CATEGORIE", "CODE_CATEGORIE"};
+        String[] afficher = new String[8];
+        DefaultTableModel model = new DefaultTableModel(null, auteur);
+        String sql = "select * from auteur";
+        try {
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
+            Statement st = con.createStatement();
+            rs = st.executeQuery(sql);
+            int numPrHorStock = 0;
+            while (rs.next()) {
+                afficher[0] = rs.getString("code");
+                afficher[1] = rs.getString("nom");
+                afficher[2] = rs.getString("description");
+                afficher[3] = rs.getString("quantite");
+                afficher[4] = rs.getString("quantitemin");
+                afficher[5] = rs.getString("categorienom");
+                afficher[6] = rs.getString("categoriecode");
+                int quantite = Integer.parseInt(afficher[3]);
+                int quantiteMin = Integer.parseInt(afficher[4]);
+                if (quantite < quantiteMin) {
+                numPrHorStock++;}
+                model.addRow(afficher);
+            }
+            jTable1.setModel(model);
+            jTable1.setForeground(Color.black);
+            if (numPrHorStock==0) {
+                //jProduitsHorsSButton.setText("Aucune Produits hors stock");
+                //jProduitsHorsSButton.setBackground(Color.gray);
+                //jProduitsHorsSButton.setForeground(Color.black);
+                jProduitsHorsSButton.setEnabled(false);
+            } else {
+                jProduitsHorsSButton.setEnabled(true);
+            }
+            /*for (int row = 0; row < model.getRowCount(); row++) {
+            int quantite = Integer.parseInt((String) model.getValueAt(row, 3));
+            int quantiteMin = Integer.parseInt((String) model.getValueAt(row, 4));
+            System.out.println(row);
+            System.out.println(quantite);
+            System.out.println(quantiteMin);
+            if (quantite < quantiteMin) {
+                
+                
+                //jTable1.getCellRenderer(row, 3).getTableCellRendererComponent(jTable1,
+                //        jTable1.getValueAt(row, 3), true, true, row, 3)
+                //        .setBackground(Color.red);
+                
+                  for (int col = 0; col < jTable1.getColumnCount(); col++) {
+                jTable1.getCellRenderer(row, col).getTableCellRendererComponent(jTable1, null, false, false, row, col)
+                        .setBackground(Color.red);
+                //jTable1.getCellRenderer(row, col).getTableCellRendererComponent(jTable1, null, false, false, row, col)
+                //      .setOpaque(true);
+            }
+            } }*/
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-}
 
+    /**
+     * cette fonction recherche et retourne un produit selon le nom
+     *
+     * @param valeur
+     */
+    public void TableAuteurrecherche(String valeur) {
+        String[] auteur = {"CODE", "NOM", "DESCRIPTION", "QUANTITE", "QUANTITE_MIN", "CATEGORIENOM", "CATEGORIECODE"};
+        String[] afficher = new String[8];
+        DefaultTableModel model = new DefaultTableModel(null, auteur);
+        String sql = "select * from auteur where nom like '%" + valeur + "%'";
 
+        try {
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
+            Statement st = con.createStatement();
+            rs = st.executeQuery(sql);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * cette fonction recherche et retourne un produit selon le nom
- * @param valeur 
- */
-public void TableAuteurrecherche(String valeur){
-    String []auteur={"CODE","NOM","DESCRIPTION","QUANTITE","QUANTITE_MIN", "CATEGORIENOM", "CATEGORIECODE"};
-    String []afficher=new String[8];
-    DefaultTableModel model = new DefaultTableModel(null,auteur);
-    String sql = "select * from auteur where nom like '%"+valeur+"%'";
-    
-    
-    try{
-        Class.forName("org.sqlite.JDBC");
-           con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
-           Statement st = con.createStatement();
-             rs=st.executeQuery(sql);
-             
-             while (rs.next()){
-                 afficher[0] = rs.getString("code");
-                 afficher[1] = rs.getString("nom");
-                 afficher[2] = rs.getString("description");
-                 afficher[3] = rs.getString("quantite");
-                 afficher[4] = rs.getString("quantitemin");
-                 afficher[5] = rs.getString("categorienom");
-                 afficher[6] = rs.getString("categoriecode");
-                 model.addRow(afficher);
-             }
-             jTable1.setModel(model);
-             con.close();
-    }catch(Exception e){
-        e.printStackTrace();
+            while (rs.next()) {
+                afficher[0] = rs.getString("code");
+                afficher[1] = rs.getString("nom");
+                afficher[2] = rs.getString("description");
+                afficher[3] = rs.getString("quantite");
+                afficher[4] = rs.getString("quantitemin");
+                afficher[5] = rs.getString("categorienom");
+                afficher[6] = rs.getString("categoriecode");
+                model.addRow(afficher);
+            }
+            jTable1.setModel(model);
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-}
 
+    /**
+     * cette fonction recherche et retourne des produits selon les mots-cles
+     * exsitant dans la description
+     *
+     * @param valeur
+     */
+    public void TableAuteurrecherche2(String valeur) {
+        String[] auteur = {"CODE", "NOM", "DESCRIPTION", "QUANTITE", "QUANTITE_MIN", "CATEGORIENOM", "CATEGORIECODE"};
+        String[] afficher = new String[8];
+        DefaultTableModel model = new DefaultTableModel(null, auteur);
+        String sql = "select * from auteur where description like '%" + valeur + "%'";
 
+        try {
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
+            Statement st = con.createStatement();
+            rs = st.executeQuery(sql);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * cette fonction recherche et retourne des produits selon les mots-cles exsitant dans la description
- * @param valeur 
- */
-public void TableAuteurrecherche2(String valeur){
-    String []auteur={"CODE","NOM","DESCRIPTION","QUANTITE", "QUANTITE_MIN", "CATEGORIENOM", "CATEGORIECODE"};
-    String []afficher=new String[8];
-    DefaultTableModel model = new DefaultTableModel(null,auteur);
-    String sql = "select * from auteur where description like '%"+valeur+"%'";
-    
-    
-    try{
-        Class.forName("org.sqlite.JDBC");
-           con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
-           Statement st = con.createStatement();
-             rs=st.executeQuery(sql);
-             
-             while (rs.next()){
-                 afficher[0] = rs.getString("code");
-                 afficher[1] = rs.getString("nom");
-                 afficher[2] = rs.getString("description");
-                 afficher[3] = rs.getString("quantite");
-                 afficher[4] = rs.getString("quantitemin");
-                 afficher[5] = rs.getString("categorienom");
-                 afficher[6] = rs.getString("categoriecode");
-                 model.addRow(afficher);
-             }
-             jTable1.setModel(model);
-             con.close();
-    }catch(Exception e){
-        e.printStackTrace();
+            while (rs.next()) {
+                afficher[0] = rs.getString("code");
+                afficher[1] = rs.getString("nom");
+                afficher[2] = rs.getString("description");
+                afficher[3] = rs.getString("quantite");
+                afficher[4] = rs.getString("quantitemin");
+                afficher[5] = rs.getString("categorienom");
+                afficher[6] = rs.getString("categoriecode");
+                model.addRow(afficher);
+            }
+            jTable1.setModel(model);
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-}
-
-
-
-
-
-
-
-
-
-
 
     /**
      * cela est la fonction main
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -867,10 +978,10 @@ public void TableAuteurrecherche2(String valeur){
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JToggleButton jProduitsHorsSButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtcatc;
