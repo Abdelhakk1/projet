@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,7 +25,7 @@ public class Produits extends javax.swing.JFrame {
     ResultSet rs;
 
     /**
-     * cette classe pour initiliser les composants
+     * cette fonction est utilisé pour initialiser les composants graphiques et pour afficher les données des produits dans une table.
      */
     public Produits() {
         initComponents();
@@ -43,7 +44,6 @@ public class Produits extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -89,30 +89,6 @@ public class Produits extends javax.swing.JFrame {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Clients");
         jLabel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Notifications");
-        jLabel11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jLabel11.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jLabel11FocusGained(evt);
-            }
-        });
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel11MouseEntered(evt);
-            }
-        });
-        jLabel11.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jLabel11KeyPressed(evt);
-            }
-        });
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Systeme/icons8_Paint_Bucket_80px_1.png"))); // NOI18N
 
@@ -163,8 +139,7 @@ public class Produits extends javax.swing.JFrame {
                                 .addComponent(jProduitsHorsSButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(nprhorStcklable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
@@ -182,9 +157,7 @@ public class Produits extends javax.swing.JFrame {
                     .addComponent(jProduitsHorsSButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                .addGap(97, 97, 97))
         );
 
         jPanel3.setBackground(new java.awt.Color(186, 79, 84));
@@ -534,7 +507,10 @@ public class Produits extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Cette fonction permet de fermer l'application lorsque l'utilisateur clique sur un JLabel spécifique.
+ * @param evt 
+ */
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         System.exit(0);
@@ -556,7 +532,7 @@ public class Produits extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtquaActionPerformed
     /**
-     * cette fonction actualise le tableau, apres une operation
+     * Cette fonction permet de mettre à jour les données d'un produit dans une base de données SQLite lorsque l'utilisateur clique sur un bouton "modifier" dans l'interface utilisateur, et de rafraîchir les données affichées à l'écran.
      *
      * @param evt
      */
@@ -584,7 +560,7 @@ public class Produits extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
     /**
-     * cette fonction ajoute des produits
+     *  Cette fonction ajoute un nouveau produit à une base de données SQLite. Elle récupère les informations du produit à partir des champs de saisie de texte de l'interface graphique utilisateur, puis elle exécute une requête SQL pour insérer ces informations dans la table "produits" de la base de données. 
      *
      * @param evt
      */
@@ -613,7 +589,7 @@ public class Produits extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
     /**
      * cette fonction supprime les elements
-     *
+     * Cette fonction supprime un produit existant de la base de données SQLite. Elle récupère le code du produit à partir du champ de saisie de texte correspondant dans l'interface graphique utilisateur, puis exécute une requête SQL pour supprimer le produit ayant ce code de la table "produits" de la base de données.
      * @param evt
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -633,7 +609,7 @@ public class Produits extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
     /**
-     * cette fonction pour extraire les information dun produits
+     * Cette fonction permet de remplir les champs de saisie (jTextField) avec les valeurs correspondantes de la ligne sélectionnée dans le jTable1 lorsqu'un clic est effectué sur cette ligne.
      *
      * @param evt
      */
@@ -654,7 +630,10 @@ public class Produits extends javax.swing.JFrame {
     private void txtrechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrechActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtrechActionPerformed
-
+/**
+ * Cette fonction est déclenchée lorsque l'utilisateur appuie sur le bouton "Actualiser" de l'interface graphique. Elle réinitialise tous les champs de texte et la table de données, ce qui permet de vider le formulaire et d'effacer toutes les données qui ont été saisies ou affichées, et elle actualise le tableau.
+ * @param evt 
+ */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         txtcode.setText("");
@@ -668,7 +647,10 @@ public class Produits extends javax.swing.JFrame {
         txtrech.setText("");
         TableProduits();
     }//GEN-LAST:event_jButton4ActionPerformed
-
+/**
+ * Cette fonction permet de rediriger l'utilisateur vers une autre interface graphique, elle crée une instance de la classe "Login_Form_Gestion", l'affiche à l'écran, la positionne au centre de l'écran, puis ferme la fenêtre courante.
+ * @param evt 
+ */
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         Login_Form_Gestion login_form_gestion = new Login_Form_Gestion();
         login_form_gestion.setVisible(true);
@@ -676,6 +658,10 @@ public class Produits extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
 
+    /***
+     * Cette fonction est un événement déclenché chaque fois que l'utilisateur relâche une touche dans le champ de recherche "txtrech". Le texte entré par l'utilisateur est récupéré à l'aide de la méthode "getText()" et est ensuite utilisé comme argument pour la fonction "TableProduitsrecherche()", qui va filtrer et afficher les produits correspondants à la recherche dans la table des produits. En d'autres termes, cette fonction met à jour la table des produits en fonction du texte de recherche entré par l'utilisateur.
+     * @param evt 
+     */
     private void txtrechKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrechKeyReleased
         // TODO add your handling code here:
         TableProduitsrecherche(txtrech.getText());
@@ -685,6 +671,10 @@ public class Produits extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtrechercheActionPerformed
 
+    /**
+     * Cette fonction est appelée chaque fois qu'une touche est relâchée dans le champ de recherche txtrecherche. Elle invoque la méthode TableProduitsrecherche2 avec le texte du champ de recherche comme argument. Cette méthode met à jour la table des produits pour afficher seulement les produits qui correspondent à la chaîne de recherche saisie par l'utilisateur dans le champ txtrecherche. En résumé, cette fonction permet de filtrer les produits affichés dans la table en fonction des termes de recherche entrés par l'utilisateur.
+     * @param evt 
+     */
     private void txtrechercheKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrechercheKeyReleased
         TableProduitsrecherche2(txtrecherche.getText());
     }//GEN-LAST:event_txtrechercheKeyReleased
@@ -700,59 +690,15 @@ public class Produits extends javax.swing.JFrame {
     private void txtquaminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtquaminActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtquaminActionPerformed
-
-    private void jLabel11KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel11KeyPressed
-        jLabel11.setBackground(Color.blue);
-        String[] produits = {"CODE  ", "NOM", "DESCRIPTION", "QUANTITE", "QUANTITE_MIN", "NOM_CATEGORIE", "CODE_CATEGORIE"};
-        String[] afficher = new String[8];
-        DefaultTableModel model = new DefaultTableModel(null, produits);
-        String sql = "select * from produits";
-        try {
-            Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
-            Statement st = con.createStatement();
-            rs = st.executeQuery(sql);
-
-            while (rs.next()) {
-                afficher[0] = rs.getString("code");
-                afficher[1] = rs.getString("nom");
-                afficher[2] = rs.getString("description");
-                afficher[3] = rs.getString("quantite");
-                afficher[4] = rs.getString("quantitemin");
-                afficher[5] = rs.getString("categorienom");
-                afficher[6] = rs.getString("categoriecode");
-
-                int quantite = Integer.parseInt(afficher[3]);
-                int quantiteMin = Integer.parseInt(afficher[4]);
-                if (quantite < quantiteMin) {
-                model.addRow(afficher);}
-            }
-            jTable1.setForeground(Color.red);
-            jTable1.setModel(model);
-
-            con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-    }//GEN-LAST:event_jLabel11KeyPressed
-
-    private void jLabel11FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jLabel11FocusGained
-        jLabel11.setBackground(Color.blue);
-    }//GEN-LAST:event_jLabel11FocusGained
-
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-jLabel11.setBackground(Color.blue);        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel11MouseClicked
-
-    private void jLabel11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseEntered
-jLabel11.setBackground(Color.orange);        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel11MouseEntered
-
+/**
+ * Cette fonction gère l'action liée au bouton "Produits Hors Stock". Si ce bouton est sélectionné, la fonction va afficher tous les produits dont la quantité est inférieure à la quantité minimale, en changeant la couleur de la police de la table en rouge. Si le bouton est désélectionné, la fonction va afficher tous les produits avec la couleur de la police par défaut (noire). La fonction utilise une requête SQL pour récupérer les données à partir de la base de données, puis les affiche dans la table.
+ * @param evt 
+ */
     private void jProduitsHorsSButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jProduitsHorsSButtonActionPerformed
         
         if (jProduitsHorsSButton.isSelected()){
+            jProduitsHorsSButton.setBackground(Color.white);
+            jProduitsHorsSButton.setForeground(Color.red);
             String[] produits = {"CODE  ", "NOM", "DESCRIPTION", "QUANTITE", "QUANTITE_MIN", "NOM_CATEGORIE", "CODE_CATEGORIE"};
         String[] afficher = new String[8];
         DefaultTableModel model = new DefaultTableModel(null, produits);
@@ -785,10 +731,18 @@ jLabel11.setBackground(Color.orange);        // TODO add your handling code here
             e.printStackTrace();
         }
         } else {
+            jProduitsHorsSButton.setForeground(Color.white);
+            jProduitsHorsSButton.setBackground(Color.red);
+            
             jTable1.setForeground(Color.black);
             TableProduits();
         }
     }//GEN-LAST:event_jProduitsHorsSButtonActionPerformed
+   
+    /**
+     * Cette fonction remplit la table de produits dans l'interface graphique à partir des données récupérées depuis la base de données "biblio.db". Elle crée un tableau de produits avec des entêtes de colonnes spécifiées dans le tableau de chaînes "produits". Les données sont stockées dans un modèle de tableau par défaut "DefaultTableModel". La requête SQL récupère toutes les données de la table "produits" et une boucle "while" est utilisée pour ajouter chaque ligne de données dans le modèle de tableau. En fin de compte, la table est mise à jour avec le nouveau modèle de tableau et le nombre de produits hors stock est également affiché.
+     */
+    
     public void TableProduits() {
         String[] produits = {"CODE  ", "NOM", "DESCRIPTION", "QUANTITE", "QUANTITE_MIN", "NOM_CATEGORIE", "CODE_CATEGORIE"};
         String[] afficher = new String[8];
@@ -818,9 +772,6 @@ jLabel11.setBackground(Color.orange);        // TODO add your handling code here
             nprhorStcklable.setText(Integer.toString(numPrHorStock));
             jTable1.setForeground(Color.black);
             if (numPrHorStock==0) {
-                //jProduitsHorsSButton.setText("Aucune Produits hors stock");
-                //jProduitsHorsSButton.setBackground(Color.gray);
-                //jProduitsHorsSButton.setForeground(Color.black);
                 jProduitsHorsSButton.setEnabled(false);
             } else {
                 jProduitsHorsSButton.setEnabled(true);
@@ -832,42 +783,41 @@ jLabel11.setBackground(Color.orange);        // TODO add your handling code here
     }
 
     /**
-     * cette fonction recherche et retourne un produit selon le nom
+     * cette Cette fonction permet de rechercher des produits dans la table "produits" de la base de données en fonction d'une valeur spécifiée (fournie en paramètre "valeur") qui doit correspondre à une partie du nom des produits recherchés.
      *
      * @param valeur
      */
-    public void TableProduitsrecherche(String valeur) {
-        String[] produits = {"CODE", "NOM", "DESCRIPTION", "QUANTITE", "QUANTITE_MIN", "CATEGORIENOM", "CATEGORIECODE"};
-        String[] afficher = new String[8];
-        DefaultTableModel model = new DefaultTableModel(null, produits);
-        String sql = "select * from produits where nom like '%" + valeur + "%'";
+        public void TableProduitsrecherche(String valeur) {
+            String[] produits = {"CODE", "NOM", "DESCRIPTION", "QUANTITE", "QUANTITE_MIN", "CATEGORIENOM", "CATEGORIECODE"};
+            String[] afficher = new String[8];
+            DefaultTableModel model = new DefaultTableModel(null, produits);
+            String sql = "select * from produits where nom like '%" + valeur + "%'";
 
-        try {
-            Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
-            Statement st = con.createStatement();
-            rs = st.executeQuery(sql);
+            try {
+                Class.forName("org.sqlite.JDBC");
+                con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
+                Statement st = con.createStatement();
+                rs = st.executeQuery(sql);
 
-            while (rs.next()) {
-                afficher[0] = rs.getString("code");
-                afficher[1] = rs.getString("nom");
-                afficher[2] = rs.getString("description");
-                afficher[3] = rs.getString("quantite");
-                afficher[4] = rs.getString("quantitemin");
-                afficher[5] = rs.getString("categorienom");
-                afficher[6] = rs.getString("categoriecode");
-                model.addRow(afficher);
+                while (rs.next()) {
+                    afficher[0] = rs.getString("code");
+                    afficher[1] = rs.getString("nom");
+                    afficher[2] = rs.getString("description");
+                    afficher[3] = rs.getString("quantite");
+                    afficher[4] = rs.getString("quantitemin");
+                    afficher[5] = rs.getString("categorienom");
+                    afficher[6] = rs.getString("categoriecode");
+                    model.addRow(afficher);
+                }
+                jTable1.setModel(model);
+                con.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            jTable1.setModel(model);
-            con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-    }
 
     /**
-     * cette fonction recherche et retourne des produits selon les mots-cles
-     * exsitant dans la description
+     * Cette fonction réalise une recherche dans la table "produits" de la base de données SQLite. Elle permet de récupérer tous les enregistrements de la table "produits" dont la colonne "description" contient la chaîne de caractères recherchée.
      *
      * @param valeur
      */
@@ -901,34 +851,11 @@ jLabel11.setBackground(Color.orange);        // TODO add your handling code here
     }
 
     /**
-     * cela est la fonction main
+     * Cette fonction est la méthode principale (main) de l'application Java qui initialise l'interface graphique de la classe Produits et la rend visible.
      *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Produits.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Produits.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Produits.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Produits.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -944,7 +871,6 @@ jLabel11.setBackground(Color.orange);        // TODO add your handling code here
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
