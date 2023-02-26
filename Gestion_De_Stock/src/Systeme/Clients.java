@@ -18,19 +18,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @version 2.4
  */
-public class Produits extends javax.swing.JFrame {
+public class Clients extends javax.swing.JFrame {
 
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
 
     /**
-     * cette fonction est utilisé pour initialiser les composants graphiques et
-     * pour afficher les données des produits dans une table.
+     * cette fonction est utilisé pour initialiser les composants graphiques et pour afficher les données des clients dans une table.
      */
-    public Produits() {
+    public Clients() {
         initComponents();
-        TableProduits();
+        TableClients();
     }
 
     /**
@@ -48,8 +47,7 @@ public class Produits extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jProduitsHorsSButton = new javax.swing.JToggleButton();
-        nprhorStcklable = new java.awt.Label();
+        jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -70,14 +68,6 @@ public class Produits extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtrecherche = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        txtcatn = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        txtcatc = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
-        txtquamin = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -88,7 +78,7 @@ public class Produits extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Clients");
+        jLabel10.setText("Stock");
         jLabel10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -107,19 +97,16 @@ public class Produits extends javax.swing.JFrame {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("MR.Bachir");
 
-        jProduitsHorsSButton.setBackground(new java.awt.Color(255, 0, 51));
-        jProduitsHorsSButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jProduitsHorsSButton.setForeground(new java.awt.Color(255, 255, 255));
-        jProduitsHorsSButton.setText("Produits Hors Stock:   ");
-        jProduitsHorsSButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jProduitsHorsSButtonActionPerformed(evt);
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Clients");
+        jLabel11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
             }
         });
-
-        nprhorStcklable.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        nprhorStcklable.setForeground(new java.awt.Color(255, 255, 255));
-        nprhorStcklable.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -129,7 +116,7 @@ public class Produits extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 51, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,30 +127,31 @@ public class Produits extends javax.swing.JFrame {
                                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(22, 22, 22)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jProduitsHorsSButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nprhorStcklable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(151, 151, 151)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(nprhorStcklable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jProduitsHorsSButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(148, 148, 148)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97))
+                .addGap(135, 135, 135))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(544, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(87, 87, 87)))
         );
 
         jPanel3.setBackground(new java.awt.Color(186, 79, 84));
@@ -198,7 +186,7 @@ public class Produits extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("Code");
+        jLabel2.setText("Code Client");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
@@ -208,12 +196,12 @@ public class Produits extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("Description");
+        jLabel4.setText("Prenom");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Quantite");
+        jLabel5.setText("Numéro Télephone");
 
         txtcode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,7 +277,7 @@ public class Produits extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Liste des produits ");
+        jLabel7.setText("Liste des clients ");
         jLabel7.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -301,54 +289,6 @@ public class Produits extends javax.swing.JFrame {
                 jLabel8MouseClicked(evt);
             }
         });
-
-        txtrecherche.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtrechercheActionPerformed(evt);
-            }
-        });
-        txtrecherche.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtrechercheKeyReleased(evt);
-            }
-        });
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel15.setText("Recherche par mot cles");
-
-        txtcatn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcatnActionPerformed(evt);
-            }
-        });
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel16.setText("Nom de Categorie");
-
-        txtcatc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcatcActionPerformed(evt);
-            }
-        });
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel17.setText("Code de Categorie");
-
-        txtquamin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtquaminActionPerformed(evt);
-            }
-        });
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel18.setText("Quantite Min");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -369,26 +309,18 @@ public class Produits extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(66, 66, 66))
-                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(14, 14, 14))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtcatn)
-                            .addComponent(txtquamin, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtqua, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtnom, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtcode, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtcatc, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtdes, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(42, 42, 42)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 121, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 63, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,17 +329,14 @@ public class Produits extends javax.swing.JFrame {
                                         .addGap(0, 0, 0)
                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel15))
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)))))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addGap(0, 0, 0)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtrech, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtrecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtrech, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(190, 190, 190)
@@ -450,34 +379,14 @@ public class Produits extends javax.swing.JFrame {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtqua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtquamin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(txtcatn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(txtcatc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 3, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(13, 13, 13))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtrech, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtrecherche, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -514,11 +423,9 @@ public class Produits extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 /**
-     * Cette fonction permet de fermer l'application lorsque l'utilisateur
-     * clique sur un JLabel spécifique.
-     *
-     * @param evt
-     */
+ * Cette fonction permet de fermer l'application lorsque l'utilisateur clique sur un JLabel spécifique.
+ * @param evt 
+ */
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         System.exit(0);
@@ -540,10 +447,7 @@ public class Produits extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtquaActionPerformed
     /**
-     * Cette fonction permet de mettre à jour les données d'un produit dans une
-     * base de données SQLite lorsque l'utilisateur clique sur un bouton
-     * "modifier" dans l'interface utilisateur, et de rafraîchir les données
-     * affichées à l'écran.
+     * Cette fonction permet de mettre à jour les données d'un produit dans une base de données SQLite lorsque l'utilisateur clique sur un bouton "modifier" dans l'interface utilisateur, et de rafraîchir les données affichées à l'écran.
      *
      * @param evt
      */
@@ -552,30 +456,23 @@ public class Produits extends javax.swing.JFrame {
         try {
             Class.forName("org.sqlite.JDBC");
             con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
-            String sql = "Update produits set nom=?,description=?,quantite=?,quantitemin=?,categorienom=?,categoriecode=? where code=?";
+            String sql = "Update clients set nom=?,prenom=?,numtel=? where codeclient=?";
             pst = con.prepareStatement(sql);
-            pst.setString(7, txtcode.getText());
+            pst.setString(4, txtcode.getText());
             pst.setString(1, txtnom.getText());
             pst.setString(2, txtdes.getText());
             pst.setString(3, txtqua.getText());
-            pst.setString(4, txtquamin.getText());
-            pst.setString(5, txtcatn.getText());
-            pst.setString(6, txtcatc.getText());
             pst.executeUpdate();
             con.close();
             JOptionPane.showMessageDialog(null, "Modification reussite");
-            TableProduits();
+            TableClients();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
     /**
-     * Cette fonction ajoute un nouveau produit à une base de données SQLite.
-     * Elle récupère les informations du produit à partir des champs de saisie
-     * de texte de l'interface graphique utilisateur, puis elle exécute une
-     * requête SQL pour insérer ces informations dans la table "produits" de la
-     * base de données.
+     *  Cette fonction ajoute un nouveau produit à une base de données SQLite. Elle récupère les informations du produit à partir des champs de saisie de texte de l'interface graphique utilisateur, puis elle exécute une requête SQL pour insérer ces informations dans la table "clients" de la base de données. 
      *
      * @param evt
      */
@@ -585,30 +482,23 @@ public class Produits extends javax.swing.JFrame {
         try {
             Class.forName("org.sqlite.JDBC");
             con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
-            String sql = "insert into produits (code,nom,description,quantite,quantitemin,categorienom,categoriecode)values(?,?,?,?,?,?,?)";
+            String sql = "insert into clients (codeclient,nom,prenom,numtel)values(?,?,?,?)";
             pst = con.prepareStatement(sql);
             pst.setString(1, txtcode.getText());
             pst.setString(2, txtnom.getText());
             pst.setString(3, txtdes.getText());
             pst.setString(4, txtqua.getText());
-            pst.setString(5, txtquamin.getText());
-            pst.setString(6, txtcatn.getText());
-            pst.setString(7, txtcatc.getText());
             pst.executeUpdate();
             con.close();
             JOptionPane.showMessageDialog(null, "Enregistrement reussie");
-            TableProduits();
+            TableClients();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
     /**
-     * cette fonction supprime les elements Cette fonction supprime un produit
-     * existant de la base de données SQLite. Elle récupère le code du produit à
-     * partir du champ de saisie de texte correspondant dans l'interface
-     * graphique utilisateur, puis exécute une requête SQL pour supprimer le
-     * produit ayant ce code de la table "produits" de la base de données.
-     *
+     * cette fonction supprime les elements
+     * Cette fonction supprime un produit existant de la base de données SQLite. Elle récupère le code du produit à partir du champ de saisie de texte correspondant dans l'interface graphique utilisateur, puis exécute une requête SQL pour supprimer le produit ayant ce code de la table "clients" de la base de données.
      * @param evt
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -616,21 +506,19 @@ public class Produits extends javax.swing.JFrame {
         try {
             Class.forName("org.sqlite.JDBC");
             con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
-            String sql = "delete from produits where code=?";
+            String sql = "delete from clients where codeclient=?";
             pst = con.prepareStatement(sql);
             pst.setString(1, txtcode.getText());
             pst.executeUpdate();
             con.close();
             JOptionPane.showMessageDialog(null, "suppression reussite");
-            TableProduits();
+            TableClients();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
     /**
-     * Cette fonction permet de remplir les champs de saisie (jTextField) avec
-     * les valeurs correspondantes de la ligne sélectionnée dans le jTable1
-     * lorsqu'un clic est effectué sur cette ligne.
+     * Cette fonction permet de remplir les champs de saisie (jTextField) avec les valeurs correspondantes de la ligne sélectionnée dans le jTable1 lorsqu'un clic est effectué sur cette ligne.
      *
      * @param evt
      */
@@ -642,45 +530,30 @@ public class Produits extends javax.swing.JFrame {
         txtnom.setText(model.getValueAt(i, 1).toString());
         txtdes.setText(model.getValueAt(i, 2).toString());
         txtqua.setText(model.getValueAt(i, 3).toString());
-        txtquamin.setText(model.getValueAt(i, 4).toString());
-        txtcatn.setText(model.getValueAt(i, 5).toString());
-        txtcatc.setText(model.getValueAt(i, 6).toString());
+        
 
     }//GEN-LAST:event_jTable1MouseReleased
 
     private void txtrechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrechActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtrechActionPerformed
-    /**
-     * Cette fonction est déclenchée lorsque l'utilisateur appuie sur le bouton
-     * "Actualiser" de l'interface graphique. Elle réinitialise tous les champs
-     * de texte et la table de données, ce qui permet de vider le formulaire et
-     * d'effacer toutes les données qui ont été saisies ou affichées, et elle
-     * actualise le tableau.
-     *
-     * @param evt
-     */
+/**
+ * Cette fonction est déclenchée lorsque l'utilisateur appuie sur le bouton "Actualiser" de l'interface graphique. Elle réinitialise tous les champs de texte et la table de données, ce qui permet de vider le formulaire et d'effacer toutes les données qui ont été saisies ou affichées, et elle actualise le tableau.
+ * @param evt 
+ */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         txtcode.setText("");
         txtnom.setText("");
         txtdes.setText("");
         txtqua.setText("");
-        txtquamin.setText("");
-        txtcatn.setText("");
-        txtcatc.setText("");
-        txtrecherche.setText("");
         txtrech.setText("");
-        TableProduits();
+        TableClients();
     }//GEN-LAST:event_jButton4ActionPerformed
-    /**
-     * Cette fonction permet de rediriger l'utilisateur vers une autre interface
-     * graphique, elle crée une instance de la classe "Login_Form_Gestion",
-     * l'affiche à l'écran, la positionne au centre de l'écran, puis ferme la
-     * fenêtre courante.
-     *
-     * @param evt
-     */
+/**
+ * Cette fonction permet de rediriger l'utilisateur vers une autre interface graphique, elle crée une instance de la classe "Login_Form_Gestion", l'affiche à l'écran, la positionne au centre de l'écran, puis ferme la fenêtre courante.
+ * @param evt 
+ */
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         Login_Form_Gestion login_form_gestion = new Login_Form_Gestion();
         login_form_gestion.setVisible(true);
@@ -688,75 +561,68 @@ public class Produits extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
 
-    /**
-     * *
-     * Cette fonction est un événement déclenché chaque fois que l'utilisateur
-     * relâche une touche dans le champ de recherche "txtrech". Le texte entré
-     * par l'utilisateur est récupéré à l'aide de la méthode "getText()" et est
-     * ensuite utilisé comme argument pour la fonction
-     * "TableProduitsrecherche()", qui va filtrer et afficher les produits
-     * correspondants à la recherche dans la table des produits. En d'autres
-     * termes, cette fonction met à jour la table des produits en fonction du
-     * texte de recherche entré par l'utilisateur.
-     *
-     * @param evt
+    /***
+     * Cette fonction est un événement déclenché chaque fois que l'utilisateur relâche une touche dans le champ de recherche "txtrech". Le texte entré par l'utilisateur est récupéré à l'aide de la méthode "getText()" et est ensuite utilisé comme argument pour la fonction "TableClientsrecherche()", qui va filtrer et afficher les clients correspondants à la recherche dans la table des clients. En d'autres termes, cette fonction met à jour la table des clients en fonction du texte de recherche entré par l'utilisateur.
+     * @param evt 
      */
     private void txtrechKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrechKeyReleased
         // TODO add your handling code here:
-        TableProduitsrecherche(txtrech.getText());
+        TableClientsrecherche(txtrech.getText());
     }//GEN-LAST:event_txtrechKeyReleased
 
-    private void txtrechercheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrechercheActionPerformed
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        Produits produits = new Produits(); 
+        produits.setVisible(true);
+                produits.setLocationRelativeTo(null);
+                this.dispose();
+        
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtrechercheActionPerformed
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+  
+    /**
+     * Cette fonction remplit la table de clients dans l'interface graphique à partir des données récupérées depuis la base de données "biblio.db". Elle crée un tableau de clients avec des entêtes de colonnes spécifiées dans le tableau de chaînes "clients". Les données sont stockées dans un modèle de tableau par défaut "DefaultTableModel". La requête SQL récupère toutes les données de la table "clients" et une boucle "while" est utilisée pour ajouter chaque ligne de données dans le modèle de tableau. En fin de compte, la table est mise à jour avec le nouveau modèle de tableau et le nombre de clients hors stock est également affiché.
+     */
+    
+    public void TableClients() {
+        String[] clients = {"CODE CLIENT", "NOM", "PRENOM", "NUMTEL"};
+        String[] afficher = new String[5];
+        DefaultTableModel model = new DefaultTableModel(null, clients);
+        String sql = "select * from clients";
+        try {
+            Class.forName("org.sqlite.JDBC");
+            con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
+            Statement st = con.createStatement();
+            rs = st.executeQuery(sql);
+            int numPrHorStock = 0;
+            while (rs.next()) {
+                afficher[0] = rs.getString("codeclient");
+                afficher[1] = rs.getString("nom");
+                afficher[2] = rs.getString("prenom");
+                afficher[3] = rs.getString("numtel");
+                model.addRow(afficher);
+            }
+            jTable1.setModel(model);
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
-     * Cette fonction est appelée chaque fois qu'une touche est relâchée dans le
-     * champ de recherche txtrecherche. Elle invoque la méthode
-     * TableProduitsrecherche2 avec le texte du champ de recherche comme
-     * argument. Cette méthode met à jour la table des produits pour afficher
-     * seulement les produits qui correspondent à la chaîne de recherche saisie
-     * par l'utilisateur dans le champ txtrecherche. En résumé, cette fonction
-     * permet de filtrer les produits affichés dans la table en fonction des
-     * termes de recherche entrés par l'utilisateur.
+     * cette Cette fonction permet de rechercher des clients dans la table "clients" de la base de données en fonction d'une valeur spécifiée (fournie en paramètre "valeur") qui doit correspondre à une partie du nom des clients recherchés.
      *
-     * @param evt
+     * @param valeur
      */
-    private void txtrechercheKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrechercheKeyReleased
-        TableProduitsrecherche2(txtrecherche.getText());
-    }//GEN-LAST:event_txtrechercheKeyReleased
+        public void TableClientsrecherche(String valeur) {
+             String[] clients = {"CODE CLIENT", "NOM", "PRENOM", "NUMTEL"};
+        String[] afficher = new String[5];
+        DefaultTableModel model = new DefaultTableModel(null, clients);
+            String sql = "select * from clients where nom like '%" + valeur + "%'";
 
-    private void txtcatnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcatnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcatnActionPerformed
-
-    private void txtcatcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcatcActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcatcActionPerformed
-
-    private void txtquaminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtquaminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtquaminActionPerformed
-    /**
-     * Cette fonction gère l'action liée au bouton "Produits Hors Stock". Si ce
-     * bouton est sélectionné, la fonction va afficher tous les produits dont la
-     * quantité est inférieure à la quantité minimale, en changeant la couleur
-     * de la police de la table en rouge. Si le bouton est désélectionné, la
-     * fonction va afficher tous les produits avec la couleur de la police par
-     * défaut (noire). La fonction utilise une requête SQL pour récupérer les
-     * données à partir de la base de données, puis les affiche dans la table.
-     *
-     * @param evt
-     */
-    private void jProduitsHorsSButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jProduitsHorsSButtonActionPerformed
-
-        if (jProduitsHorsSButton.isSelected()) {
-            jProduitsHorsSButton.setBackground(Color.white);
-            jProduitsHorsSButton.setForeground(Color.red);
-            String[] produits = {"CODE  ", "NOM", "DESCRIPTION", "QUANTITE", "QUANTITE_MIN", "NOM_CATEGORIE", "CODE_CATEGORIE"};
-            String[] afficher = new String[8];
-            DefaultTableModel model = new DefaultTableModel(null, produits);
-            String sql = "select * from produits";
             try {
                 Class.forName("org.sqlite.JDBC");
                 con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
@@ -766,172 +632,19 @@ public class Produits extends javax.swing.JFrame {
                 while (rs.next()) {
                     afficher[0] = rs.getString("code");
                     afficher[1] = rs.getString("nom");
-                    afficher[2] = rs.getString("description");
-                    afficher[3] = rs.getString("quantite");
-                    afficher[4] = rs.getString("quantitemin");
-                    afficher[5] = rs.getString("categorienom");
-                    afficher[6] = rs.getString("categoriecode");
-
-                    int quantite = Integer.parseInt(afficher[3]);
-                    int quantiteMin = Integer.parseInt(afficher[4]);
-                    if (quantite < quantiteMin) {
-                        model.addRow(afficher);
-                    }
+                    afficher[2] = rs.getString("prenom");
+                    afficher[3] = rs.getString("numtel");
+                    model.addRow(afficher);
                 }
-                jTable1.setForeground(Color.red);
                 jTable1.setModel(model);
-
                 con.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else {
-            jProduitsHorsSButton.setForeground(Color.white);
-            jProduitsHorsSButton.setBackground(Color.red);
-            jTable1.setForeground(Color.black);
-            TableProduits();
         }
-    }//GEN-LAST:event_jProduitsHorsSButtonActionPerformed
-
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-
-        Clients c = new Clients();
-        c.setVisible(true);
-        c.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_jLabel10MouseClicked
 
     /**
-     * Cette fonction remplit la table de produits dans l'interface graphique à
-     * partir des données récupérées depuis la base de données "biblio.db". Elle
-     * crée un tableau de produits avec des entêtes de colonnes spécifiées dans
-     * le tableau de chaînes "produits". Les données sont stockées dans un
-     * modèle de tableau par défaut "DefaultTableModel". La requête SQL récupère
-     * toutes les données de la table "produits" et une boucle "while" est
-     * utilisée pour ajouter chaque ligne de données dans le modèle de tableau.
-     * En fin de compte, la table est mise à jour avec le nouveau modèle de
-     * tableau et le nombre de produits hors stock est également affiché.
-     */
-    public void TableProduits() {
-        String[] produits = {"CODE  ", "NOM", "DESCRIPTION", "QUANTITE", "QUANTITE_MIN", "NOM_CATEGORIE", "CODE_CATEGORIE"};
-        String[] afficher = new String[8];
-        DefaultTableModel model = new DefaultTableModel(null, produits);
-        String sql = "select * from produits";
-        try {
-            Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
-            Statement st = con.createStatement();
-            rs = st.executeQuery(sql);
-            int numPrHorStock = 0;
-            while (rs.next()) {
-                afficher[0] = rs.getString("code");
-                afficher[1] = rs.getString("nom");
-                afficher[2] = rs.getString("description");
-                afficher[3] = rs.getString("quantite");
-                afficher[4] = rs.getString("quantitemin");
-                afficher[5] = rs.getString("categorienom");
-                afficher[6] = rs.getString("categoriecode");
-                int quantite = Integer.parseInt(afficher[3]);
-                int quantiteMin = Integer.parseInt(afficher[4]);
-                if (quantite < quantiteMin) {
-                    numPrHorStock++;
-                }
-                model.addRow(afficher);
-            }
-            jTable1.setModel(model);
-            nprhorStcklable.setText(Integer.toString(numPrHorStock));
-            jTable1.setForeground(Color.black);
-            if (numPrHorStock == 0) {
-                jProduitsHorsSButton.setEnabled(false);
-                jProduitsHorsSButton.setBackground(Color.gray);
-            } else {
-                jProduitsHorsSButton.setEnabled(true);
-                jProduitsHorsSButton.setBackground(Color.red);
-            }
-            con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * cette Cette fonction permet de rechercher des produits dans la table
-     * "produits" de la base de données en fonction d'une valeur spécifiée
-     * (fournie en paramètre "valeur") qui doit correspondre à une partie du nom
-     * des produits recherchés.
-     *
-     * @param valeur
-     */
-    public void TableProduitsrecherche(String valeur) {
-        String[] produits = {"CODE", "NOM", "DESCRIPTION", "QUANTITE", "QUANTITE_MIN", "CATEGORIENOM", "CATEGORIECODE"};
-        String[] afficher = new String[8];
-        DefaultTableModel model = new DefaultTableModel(null, produits);
-        String sql = "select * from produits where nom like '%" + valeur + "%'";
-
-        try {
-            Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
-            Statement st = con.createStatement();
-            rs = st.executeQuery(sql);
-
-            while (rs.next()) {
-                afficher[0] = rs.getString("code");
-                afficher[1] = rs.getString("nom");
-                afficher[2] = rs.getString("description");
-                afficher[3] = rs.getString("quantite");
-                afficher[4] = rs.getString("quantitemin");
-                afficher[5] = rs.getString("categorienom");
-                afficher[6] = rs.getString("categoriecode");
-                model.addRow(afficher);
-            }
-            jTable1.setModel(model);
-            con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Cette fonction réalise une recherche dans la table "produits" de la base
-     * de données SQLite. Elle permet de récupérer tous les enregistrements de
-     * la table "produits" dont la colonne "description" contient la chaîne de
-     * caractères recherchée.
-     *
-     * @param valeur
-     */
-    public void TableProduitsrecherche2(String valeur) {
-        String[] produits = {"CODE", "NOM", "DESCRIPTION", "QUANTITE", "QUANTITE_MIN", "CATEGORIENOM", "CATEGORIECODE"};
-        String[] afficher = new String[8];
-        DefaultTableModel model = new DefaultTableModel(null, produits);
-        String sql = "select * from produits where description like '%" + valeur + "%'";
-
-        try {
-            Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite:biblio.db");
-            Statement st = con.createStatement();
-            rs = st.executeQuery(sql);
-
-            while (rs.next()) {
-                afficher[0] = rs.getString("code");
-                afficher[1] = rs.getString("nom");
-                afficher[2] = rs.getString("description");
-                afficher[3] = rs.getString("quantite");
-                afficher[4] = rs.getString("quantitemin");
-                afficher[5] = rs.getString("categorienom");
-                afficher[6] = rs.getString("categoriecode");
-                model.addRow(afficher);
-            }
-            jTable1.setModel(model);
-            con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Cette fonction est la méthode principale (main) de l'application Java qui
-     * initialise l'interface graphique de la classe Produits et la rend
-     * visible.
+     * Cette fonction est la méthode principale (main) de l'application Java qui initialise l'interface graphique de la classe Produits et la rend visible.
      *
      * @param args the command line arguments
      */
@@ -939,7 +652,7 @@ public class Produits extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Produits().setVisible(true);
+                new Clients().setVisible(true);
             }
         });
     }
@@ -951,13 +664,10 @@ public class Produits extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -968,18 +678,12 @@ public class Produits extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JToggleButton jProduitsHorsSButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private java.awt.Label nprhorStcklable;
-    private javax.swing.JTextField txtcatc;
-    private javax.swing.JTextField txtcatn;
     private javax.swing.JTextField txtcode;
     private javax.swing.JTextField txtdes;
     private javax.swing.JTextField txtnom;
     private javax.swing.JTextField txtqua;
-    private javax.swing.JTextField txtquamin;
     private javax.swing.JTextField txtrech;
-    private javax.swing.JTextField txtrecherche;
     // End of variables declaration//GEN-END:variables
 }
