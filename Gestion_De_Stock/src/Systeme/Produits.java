@@ -733,7 +733,6 @@ public class Produits extends javax.swing.JFrame {
         } else {
             jProduitsHorsSButton.setForeground(Color.white);
             jProduitsHorsSButton.setBackground(Color.red);
-            
             jTable1.setForeground(Color.black);
             TableProduits();
         }
@@ -773,8 +772,10 @@ public class Produits extends javax.swing.JFrame {
             jTable1.setForeground(Color.black);
             if (numPrHorStock==0) {
                 jProduitsHorsSButton.setEnabled(false);
+                jProduitsHorsSButton.setBackground(Color.gray);
             } else {
                 jProduitsHorsSButton.setEnabled(true);
+                jProduitsHorsSButton.setBackground(Color.red);
             }
             con.close();
         } catch (Exception e) {
