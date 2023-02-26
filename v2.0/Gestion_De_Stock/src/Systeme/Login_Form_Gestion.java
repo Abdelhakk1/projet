@@ -316,9 +316,9 @@ public class Login_Form_Gestion extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, "Please enter your username and your password", "Missing Information", JOptionPane.ERROR_MESSAGE);
         else {
             if (txtusername.getText().equals("Bachir")&& txtpass.getText().equals("admin")) {
-                Auteur auteur = new Auteur ();
-                auteur.setVisible(true);
-                auteur.setLocationRelativeTo(null);
+                Produits produits = new Produits ();
+                produits.setVisible(true);
+                produits.setLocationRelativeTo(null);
                 this.dispose();
             }
             else
