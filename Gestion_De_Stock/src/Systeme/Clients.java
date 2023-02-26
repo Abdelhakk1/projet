@@ -630,7 +630,7 @@ public class Clients extends javax.swing.JFrame {
                 rs = st.executeQuery(sql);
 
                 while (rs.next()) {
-                    afficher[0] = rs.getString("code");
+                    afficher[0] = rs.getString("codeclient");
                     afficher[1] = rs.getString("nom");
                     afficher[2] = rs.getString("prenom");
                     afficher[3] = rs.getString("numtel");
